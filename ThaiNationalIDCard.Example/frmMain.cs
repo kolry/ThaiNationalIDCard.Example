@@ -125,6 +125,23 @@ namespace ThaiNationalIDCard.Example
             pictureBox1.BeginInvoke(new MethodInvoker(delegate { pictureBox1.Image = personal.PhotoBitmap; }));
         }
 
+
+        public void CardRemoved()
+        {
+            lbl_cid.BeginInvoke(new MethodInvoker(delegate { lbl_cid.Text = string.Empty; }));
+            lbl_birthday.BeginInvoke(new MethodInvoker(delegate { lbl_birthday.Text = string.Empty; }));
+            lbl_sex.BeginInvoke(new MethodInvoker(delegate { lbl_sex.Text = string.Empty; }));
+            lbl_th_prefix.BeginInvoke(new MethodInvoker(delegate { lbl_th_prefix.Text = string.Empty; }));
+            lbl_th_firstname.BeginInvoke(new MethodInvoker(delegate { lbl_th_firstname.Text = string.Empty; }));
+            lbl_th_lastname.BeginInvoke(new MethodInvoker(delegate { lbl_th_lastname.Text = string.Empty; }));
+            lbl_en_prefix.BeginInvoke(new MethodInvoker(delegate { lbl_en_prefix.Text = string.Empty; }));
+            lbl_en_firstname.BeginInvoke(new MethodInvoker(delegate { lbl_en_firstname.Text = string.Empty; }));
+            lbl_en_lastname.BeginInvoke(new MethodInvoker(delegate { lbl_en_lastname.Text = string.Empty; }));
+            lbl_issue.BeginInvoke(new MethodInvoker(delegate { lbl_issue.Text = string.Empty; }));
+            lbl_expire.BeginInvoke(new MethodInvoker(delegate { lbl_expire.Text = string.Empty; }));
+            pictureBox1.BeginInvoke(new MethodInvoker(delegate { pictureBox1.Image = null; }));
+        }
+
         private void btnReadWithPhoto_Click_1(object sender, EventArgs e)
         {
             ThaiIDCard idcard = new ThaiIDCard();
@@ -185,6 +202,7 @@ namespace ThaiNationalIDCard.Example
                 }
                 idcard.MonitorStart(cbxReaderList.SelectedItem.ToString());
                 idcard.eventCardInsertedWithPhoto += new handleCardInserted(CardInserted);
+                idcard.eventCardRemoved += new handleCardRemoved(CardRemoved);
                 idcard.eventPhotoProgress += new handlePhotoProgress(photoProgress);
 
             }
