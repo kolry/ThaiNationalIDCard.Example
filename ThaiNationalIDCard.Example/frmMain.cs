@@ -41,8 +41,6 @@ namespace ThaiNationalIDCard.Example
             }
         }
 
-
-
         private void btnRead_Click(object sender, EventArgs e)
         {
             ThaiIDCard idcard = new ThaiIDCard();
@@ -77,8 +75,6 @@ namespace ThaiNationalIDCard.Example
             }
         }
 
-
-
         private void photoProgress(int value, int maximum)
         {
             if (txtBoxLog.InvokeRequired)
@@ -106,7 +102,6 @@ namespace ThaiNationalIDCard.Example
 
         }
 
-
         public void CardInserted(Personal personal)
         {
             if (personal == null)
@@ -123,8 +118,11 @@ namespace ThaiNationalIDCard.Example
             lbl_issue.BeginInvoke(new MethodInvoker(delegate { lbl_issue.Text = personal.Issue.ToString("dd/MM/yyyy"); }));
             lbl_expire.BeginInvoke(new MethodInvoker(delegate { lbl_expire.Text = personal.Expire.ToString("dd/MM/yyyy"); }));
             pictureBox1.BeginInvoke(new MethodInvoker(delegate { pictureBox1.Image = personal.PhotoBitmap; }));
-        }
 
+            lbl_alarmMessage.BeginInvoke(new MethodInvoker(delegate { lbl_alarmMessage.Text = "กรุณาตรวจสอบข้อมูล"; }));
+            lbl_alarmMessage.BeginInvoke(new MethodInvoker(delegate { lbl_alarmMessage.ForeColor = System.Drawing.Color.Green; }));
+            lbl_alarmMessage.BeginInvoke(new MethodInvoker(delegate { lbl_alarmMessage.Visible = true; }));         
+        }
 
         public void CardRemoved()
         {
@@ -140,6 +138,8 @@ namespace ThaiNationalIDCard.Example
             lbl_issue.BeginInvoke(new MethodInvoker(delegate { lbl_issue.Text = string.Empty; }));
             lbl_expire.BeginInvoke(new MethodInvoker(delegate { lbl_expire.Text = string.Empty; }));
             pictureBox1.BeginInvoke(new MethodInvoker(delegate { pictureBox1.Image = null; }));
+
+            lbl_alarmMessage.BeginInvoke(new MethodInvoker(delegate { lbl_alarmMessage.Text = string.Empty; }));            
         }
 
         private void btnReadWithPhoto_Click_1(object sender, EventArgs e)
@@ -201,7 +201,8 @@ namespace ThaiNationalIDCard.Example
                     return;
                 }
                 idcard.MonitorStart(cbxReaderList.SelectedItem.ToString());
-                idcard.eventCardInsertedWithPhoto += new handleCardInserted(CardInserted);
+                //idcard.eventCardInsertedWithPhoto += new handleCardInserted(CardInserted);    //Read data with photo, it's take long time.
+                idcard.eventCardInserted += new handleCardInserted(CardInserted);   //Read data no photo, that is fast.
                 idcard.eventCardRemoved += new handleCardRemoved(CardRemoved);
                 idcard.eventPhotoProgress += new handlePhotoProgress(photoProgress);
 

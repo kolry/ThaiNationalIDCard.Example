@@ -60,6 +60,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtBoxLog = new System.Windows.Forms.TextBox();
             this.btnRead = new System.Windows.Forms.Button();
+            this.lbl_alarmMessage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -341,11 +342,22 @@
             this.btnRead.UseVisualStyleBackColor = true;
             this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
             // 
+            // lbl_alarmMessage
+            // 
+            this.lbl_alarmMessage.AutoSize = true;
+            this.lbl_alarmMessage.Location = new System.Drawing.Point(430, 39);
+            this.lbl_alarmMessage.Name = "lbl_alarmMessage";
+            this.lbl_alarmMessage.Size = new System.Drawing.Size(91, 13);
+            this.lbl_alarmMessage.TabIndex = 62;
+            this.lbl_alarmMessage.Text = "lbl_alarmMessage";
+            this.lbl_alarmMessage.Visible = false;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(891, 495);
+            this.Controls.Add(this.lbl_alarmMessage);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.lbl_issue);
             this.Controls.Add(this.label11);
@@ -417,6 +429,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtBoxLog;
         private System.Windows.Forms.Button btnRead;
+        private System.Windows.Forms.Label lbl_alarmMessage;
 
     }
 }
